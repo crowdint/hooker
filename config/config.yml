@@ -1,7 +1,7 @@
 repos:
   "http://github.com/defunkt/github":
     "refs/heads/master":
-      recipients: [someone@mail.com, someoneelse@mail.com]
+      recipients: [david@crowdint.com]
     "refs/heads/debug":
-      recipients: [someone@mail.com, someoneelse@mail.com]
+      recipients: [david@crowdint.com]
 mailfrom: admin@somecompany.com

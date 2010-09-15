@@ -22,7 +22,6 @@ module Rack
           branch["recipients"].each do |r|
             subject = %{#{params["commits"].first["author"]["name"]} pushed to #{params["ref"]} on #{params["repository"]["url"]}}
             body = create_body(params["commits"])
-            puts body
             notify(r, subject, body)
             response = "NOTIFY"
           end
@@ -37,6 +36,7 @@ module Rack
       mail = Mail.new do
         from from
         to recipient
+        content_type 'text/html; charset=UTF-8'
         subject subject
         body body
       end
@@ -44,15 +44,11 @@ module Rack
       mail.deliver!
       mail
     end
-    
-    def self.create_subject
-      "some subject"
-    end
-    
+
     def create_body(commits)
       body = ""
       for commit in commits
-        body = %{#{body} <a href="#{commit["url"]}">#{commit["id"]}</a>\r\n}
+        body = %{#{body} <a href="#{commit["url"]}">#{commit["id"]}</a></br>}
       end
       body
     end
