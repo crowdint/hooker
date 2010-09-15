@@ -1,0 +1,4 @@
+repos:
+  "http://www.gitrepo.com":
+    ref: master
+    recipients: [someone@mail.com, someoneelse@mail.com]
