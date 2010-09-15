@@ -1,4 +1,6 @@
 repos:
-  "http://www.gitrepo.com":
-    ref: master
-    recipients: [someone@mail.com, someoneelse@mail.com]
+  "http://github.com/defunkt/github":
+    "refs/heads/master":
+      recipients: [someone@mail.com, someoneelse@mail.com]
+    "refs/heads/debug":
+      recipients: [someone@mail.com, someoneelse@mail.com]
