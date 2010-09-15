@@ -4,3 +4,4 @@ repos:
       recipients: [someone@mail.com, someoneelse@mail.com]
     "refs/heads/debug":
       recipients: [someone@mail.com, someoneelse@mail.com]
+mailfrom: admin@somecompany.com
