@@ -22,8 +22,8 @@ module Rack
         branch = repo[params["ref"]] if repo
         if branch && branch["recipients"]
           branch["recipients"].each do |r|
-            subject = %{#{params["commits"].first["author"]["name"]} pushed to #{params["ref"]} on #{params["repository"]["url"]}}
-            body = create_body(params["commits"])
+            subject = %{#{params["pusher"]["name"]} pushed to #{params["ref"]} on #{params["repository"]["url"]}}
+            body = create_body(params)
             notify(r, subject, body)
             response = "NOTIFY"
           end
@@ -47,10 +47,14 @@ module Rack
       mail
     end
 
-    def create_body(commits)
+    def create_body(params)
       body = ""
-      for commit in commits
-        body = %{#{body} <a href="#{commit["url"]}">#{commit["id"]}</a></br>}
+      if params["forced"] == true
+        body = %{<a href="#{params["compare"]}">Forced push</a></br>}
+      else
+        for commit in params["commits"]
+          body = %{#{body} <a href="#{commit["url"]}">#{commit["id"]}</a> - #{commit["message"]}</br>}
+        end
       end
       body
     end

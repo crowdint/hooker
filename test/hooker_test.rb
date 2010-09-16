@@ -34,8 +34,12 @@ class HookerTest < Test::Unit::TestCase
     assert_kind_of(Array, @hooker.config["repos"]["http://github.com/defunkt/github"]["refs/heads/master"]["recipients"])
   end
 
-  def test_github
+  def test_regular_push
     assert_equal(post("/", github_sample_post).body, "NOTIFY")
+  end
+  
+  def test_forced_push
+    assert_equal(post("/", failing_post).body, "NOTIFY")    
   end
 
   def github_sample_post
@@ -78,8 +82,28 @@ class HookerTest < Test::Unit::TestCase
         }
         ],
         \"after\": \"de8251ff97ee194a289832576287d6f8ad74e3d0\",
-        \"ref\": \"refs/heads/master\"
+        \"ref\": \"refs/heads/master\",
+        \"pusher\":{\"name\":\"dabit\",\"email\":\"david@crowdint.com\"}
         }"
     }
+  end
+  
+  def failing_post
+    {"payload" => "
+      {\"repository\":{
+        \"url\":\"http://github.com/dabit/dummy_repo\",
+        \"has_wiki\":true,\"description\":\"\",\"open_issues\":0,
+        \"homepage\":\"\",\"has_issues\":true,\"fork\":false,
+        \"pushed_at\":\"2010/09/15 23:20:18 -0700\",\"watchers\":1,
+        \"private\":false,\"created_at\":\"2010/09/15 14:22:35 -0700\",
+        \"has_downloads\":true,
+        \"owner\":{\"name\":\"dabit\",\"email\":\"david@crowdint.com\"},
+        \"name\":\"dummy_repo\",\"forks\":0},
+        \"before\":\"3f1e0422f23ea1d019c1a7602ae29be992540786\",
+        \"after\":\"7a42488f6f80a797e4aab6ee3124429d582be555\",
+        \"ref\":\"refs/heads/master\",
+        \"compare\":\"http://github.com/dabit/dummy_repo/compare/3f1e042...7a42488\",
+        \"forced\":true,\"commits\":[],
+        \"pusher\":{\"name\":\"dabit\",\"email\":\"david@crowdint.com\"}}"}
   end
 end
