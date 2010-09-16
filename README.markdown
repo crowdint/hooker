@@ -1,12 +1,13 @@
 # hooker
 
-Small Rack app to manage your github POST hooks
+Rack app to manage your github POST hooks
 
 ## Configuration
 
 ### Mail
 
-Modify *config/mail.rb* to suit your needs, an example on how to use it with Sendgrid on Heroku:
+Modify *config/mail.rb* to suit your needs. You can find all the options [here](http://github.com/mikel/mail).
+An example on how to use it with Sendgrid on Heroku:
 
     Mail.defaults do
       delivery_method :smtp, {
