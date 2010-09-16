@@ -14,12 +14,18 @@ module Rack
 
     def call(env)
       request = Rack::Request.new(env)
-      input = request.params["payload"] || ""
+      payload = request.params["payload"] || ""
       response = "NOTHING TO DO"
-      unless input.empty?
-        params = JSON.load(input)
+      unless payload.empty?
+        params = JSON.load(payload)
+
+        # Look for the repo on config.yml
         repo = self.config["repos"][params["repository"]["url"]]
+
+        # If repo found, look for the branch on config.yml
         branch = repo[params["ref"]] if repo
+
+        # If branch found, and has recipients, notify
         if branch && branch["recipients"]
           branch["recipients"].each do |r|
             subject = %{#{params["pusher"]["name"]} pushed to #{params["ref"]} on #{params["repository"]["url"]}}
