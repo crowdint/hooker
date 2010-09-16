@@ -1,7 +1,26 @@
+# Repo configuration
 repos:
+  # The repo URL
   "http://github.com/defunkt/github":
+    # The branch name
     "refs/heads/master":
+      # An array with the recipients for the notifications
       recipients: [david@crowdint.com]
-    "refs/heads/debug":
-      recipients: [david@crowdint.com]
+
 mailfrom: admin@somecompany.com
+
+#
+# You can configure several repos, branches and recipients
+#
+# repos:
+#   "http://github.com/defunkt/github":
+#     "refs/heads/master":
+#       recipients: [david@crowdint.com, edwin@crowdint]
+#     "refs/heads/debug":
+#       recipients: [david@crowdint.com]
+#   "http://github.com/crowdint/hooker":
+#     "refs/heads/master":
+#       recipients: [david@crowdint.com]
+#     "refs/heads/debug":
+#       recipients: [david@crowdint.com]
+#
