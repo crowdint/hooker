@@ -28,7 +28,7 @@ module Rack
         # If branch found, and has recipients, notify
         if branch && branch["recipients"]
           branch["recipients"].each do |r|
-            subject = %{#{params["pusher"]["name"]} pushed to #{params["ref"]} on #{params["repository"]["url"]}}
+            subject = %{#{pusher_name(params)} pushed to #{params["ref"]} on #{params["repository"]["url"]}}
             body = create_body(params)
             notify(r, subject, body)
             response = "NOTIFY"
@@ -63,6 +63,14 @@ module Rack
         end
       end
       body
+    end
+
+    def pusher_name(params)
+      if params["pusher"]
+        params["pusher"]["name"]
+      else
+        "Test"
+      end
     end
   end
 end

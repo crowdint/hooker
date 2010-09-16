@@ -47,7 +47,7 @@ end
 def failing_post
   {"payload" => "
     {\"repository\":{
-      \"url\":\"http://github.com/dabit/dummy_repo\",
+      \"url\":\"http://github.com/defunkt/github\",
       \"has_wiki\":true,\"description\":\"\",\"open_issues\":0,
       \"homepage\":\"\",\"has_issues\":true,\"fork\":false,
       \"pushed_at\":\"2010/09/15 23:20:18 -0700\",\"watchers\":1,
