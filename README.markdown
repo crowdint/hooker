@@ -35,7 +35,13 @@ This is where you configure the notifications that you want to receive
         "refs/heads/debug":
           recipients: [david@crowdint.com]
 
-### Heroku
+## Run with rackup
+
+Configure it to your needs, then run:
+
+    rackup config.ru
+
+## Run on Heroku
 
 A quick way to set this up is by using heroku. Clone or fork the repo, change the settings to match your needs and just:
 
