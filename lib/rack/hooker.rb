@@ -2,6 +2,7 @@ require "rack"
 require "rack/request"
 require "rack/response"
 require 'yaml'
+require 'json'
 require 'config/mail'
 
 module Rack
@@ -12,10 +13,11 @@ module Rack
     end
 
     def call(env)
-      input = env["rack.input"].read
+      request = Rack::Request.new(env)
+      input = request.params["payload"] || ""
       response = "NOTHING TO DO"
       unless input.empty?
-        params = YAML.load(input)
+        params = JSON.load(input)
         repo = self.config["repos"][params["repository"]["url"]]
         branch = repo[params["ref"]] if repo
         if branch && branch["recipients"]
