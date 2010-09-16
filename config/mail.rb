@@ -6,7 +6,7 @@ Mail.defaults do
   #
   delivery_method :smtp, {
     :port => 25,
-    :address => "smtp.sendgrid.com",
+    :address => "smtp.sendgrid.net",
     :domain => ENV["SENDGRID_DOMAIN"],
     :authentication => "plain",
     :user_name => ENV["SENDGRID_USERNAME"],
