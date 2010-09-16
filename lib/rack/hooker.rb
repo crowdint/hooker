@@ -59,7 +59,7 @@ module Rack
         body = %{<a href="#{params["compare"]}">Forced push</a></br>}
       else
         for commit in params["commits"]
-          body = %{#{body} <a href="#{commit["url"]}">#{commit["id"]}</a> - #{commit["message"]}</br>}
+          body = %{#{body} <a href="#{commit["url"]}">#{commit["id"]}</a> - #{commit["message"]}<br/>}
         end
       end
       body
