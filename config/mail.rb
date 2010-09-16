@@ -1,5 +1,3 @@
-require 'mail'
-
 Mail.defaults do
   #
   # Example on how to use it with Sendgrid / Heroku

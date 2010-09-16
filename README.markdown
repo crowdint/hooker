@@ -20,6 +20,8 @@ An example on how to use it with Sendgrid on Heroku:
       }
     end
 
+TIP: If you're using sendmail, just comment or remove the configuration file.
+
 ### config/config.yml
 
 This is where you configure the notifications that you want to receive

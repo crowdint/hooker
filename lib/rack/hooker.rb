@@ -3,6 +3,7 @@ require "rack/request"
 require "rack/response"
 require 'yaml'
 require 'json'
+require 'mail'
 require 'config/mail'
 
 module Rack
